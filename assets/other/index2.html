@@ -1,0 +1,344 @@
+<!-- 
+  This script allows doctors to manage their meeting schedules, make calls, and chat with their patients.
+-->
+<style>
+  #options-container {
+      margin-top: 20px;
+    }
+
+    #options-label {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    #options-select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    #file-input-container {
+      margin-top: 20px;
+    }
+
+    #file-input-label {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    #file-input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    #file-input-button {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      
+      color: #fff;
+      cursor: pointer;
+    }
+</style>
+<!-- Include necessary libraries and styles -->
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  crossorigin="anonymous"
+/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+  integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"
+></script>
+
+<!-- Create a navigation bar for the website -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Doctor Chat</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Call</a></li>
+      <li><a href="#">Chat</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Display the doctor's current meeting schedule -->
+<h2>Meeting Schedule</h2>
+<button type="button" class="btn btn-primary" id="meeting-button">Add Meeting</button>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Patient</th>
+      <th>Reason for visit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>9:00 AM</td>
+      <td>John Doe</td>
+      <td>Follow-up appointment</td>
+    </tr>
+    <tr>
+      <td>10:00 AM</td>
+      <td>Jane Smith</td>
+      <td>New patient consultation</td>
+    </tr>
+  </tbody>
+</table>
+<div id="containor">
+<!-- Provide a button for the doctor to initiate a call with a patient -->
+<h2>Call</h2>
+<button type="button" class="btn btn-primary" id="call-button">Initiate call</button>
+</div>
+<!-- Provide a chat interface for the doctor to communicate with their patients -->
+<h2>Chat</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <span class="glyphicon glyphicon-comment"></span> Chat
+        </div>
+
+        <!-- Add a form for the doctor to select the patient they want to call or chat with -->
+        <form id="chat-form">
+          <div class="form-group">
+            <label for="patient-select">Select a patient:</label>
+            <select class="form-control" id="patient-select">
+              <option>John Doe</option>
+              <option>Jane Smith</option>
+            </select>
+          </div>
+
+          <!-- Add a text area for the doctor to type and send messages in the chat interface -->
+          <div class="form-group">
+            <label for="chat-message">Type your message:</label>
+            <textarea
+              class="form-control"
+              id="chat-message"
+              rows="3"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send</button>
+          <!-- Display the chat conversation between the doctor and the selected patient -->
+          <div class="panel-body">
+            <ul class="chat">
+              <li class="left clearfix">
+                <span class="chat-img pull-left">
+                  
+                </span>
+                <div class="chat-body clearfix">
+                  <div class="header">
+                    <strong class="primary-font">John Doe</strong>
+                    <small class="pull-right text-muted">
+                      <span class="glyphicon glyphicon-time"></span>12 mins ago
+                    </small>
+                  </div>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Curabitur bibendum ornare dolor, quis ullamcorper ligula
+                    sodales.
+                  </p>
+                </div>
+              </li>
+              <li class="right clearfix">
+                <span class="chat-img pull-right">
+                 >
+                </span>
+                <div class="chat-body clearfix">
+                  <div class="header">
+                    <small class="text-muted">
+                      <span class="glyphicon glyphicon-time"></span>13 mins
+                      ago</small
+                    >
+                    <strong class="pull-right primary-font">Doctor</strong>
+                  </div>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Curabitur bibendum ornare dolor, quis ullamcorper ligula
+                    sodales.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="options-container">
+  <div id="options-label">Options:</div>
+  <select id="options-select">
+    <option value="Option 1">Option 1</option>
+    <option value="Option 2">Option 2</option>
+    <option value="Option 3">Option 3</option>
+  </select>
+</div>
+
+<div id="file-input-container">
+  <div id="file-input-label">File Input:</div>
+  <input type="file" id="file-input">
+  <button id="file-input-button" type="button" class="btn btn-primary">Submit File</button>
+</div>
+
+          <!-- Add a script to handle sending and receiving messages in the chat interface -->
+          <!-- Add a script to handle sending and receiving messages in the chat interface -->
+          <script>
+            const meetingButton = document.getElementById('meeting-button');
+const meetingsTable = document.querySelector('.table tbody');
+
+meetingButton.addEventListener('click', () => {
+  const timeInput = prompt('Enter the time of the meeting:');
+  const patientInput = prompt('Enter the patients name:');
+  const reasonInput = prompt('Enter the reason for the visit:');
+
+  // Create a new table row
+  const newRow = document.createElement('tr');
+
+  // Create table cells for the time, patient, and reason
+  const timeCell = document.createElement('td');
+  timeCell.textContent = timeInput;
+  const patientCell = document.createElement('td');
+  patientCell.textContent = patientInput;
+  const reasonCell = document.createElement('td');
+  reasonCell.textContent = reasonInput;
+
+  // Add the cells to the new row
+  newRow.appendChild(timeCell);
+  newRow.appendChild(patientCell);
+  newRow.appendChild(reasonCell);
+
+  // Add the new row to the table
+  meetingsTable.appendChild(newRow);
+});
+            var optionsSelect = document.getElementById('options-select');
+  var fileInput = document.getElementById('file-input');
+  var fileInputButton = document.getElementById('file-input-button');
+  //Function to handle the user selecting a file
+function handleFileInput() {
+  // Get the selected file
+  var selectedFile = fileInput.files[0];
+
+  // Check if a file was selected
+  if (selectedFile) {
+    // Use the API to analyze the selected file
+    // The details of this will depend on the specific API being used
+
+    // Show a message to the user indicating that the file is being analyzed
+    addMessage('Analyzing file...');
+  }
+}
+
+// Set the 'Submit' button to call the handleSubmit function when clicked
+chatSubmit.addEventListener('click', handleSubmit);
+
+// Set the 'Start Call' button to call the handleCall function when clicked
+callButton.addEventListener('click', handleCall);
+
+// Set the 'Submit File' button to call the handleFileInput function when clicked
+fileInputButton.addEventListener('click', handleFileInput);
+
+
+  // Get references to the chat message input and the chat conversation element
+const messageInput = document.getElementById('chat-message');
+const conversationElement = document.querySelector('.chat');
+
+// Add a click event listener to the submit button
+document.querySelector('button[type="submit"]').addEventListener('click', () => {
+  // Get the value of the chat message input
+  const message = messageInput.value;
+
+  // Create a new list item for the chat message
+  const messageElement = document.createElement('li');
+  messageElement.classList.add('left', 'clearfix');
+
+  // Add the chat message to the list item
+  const messageText = document.createTextNode(message);
+  messageElement.appendChild(messageText);
+
+  // Add the list item to the chat conversation
+  conversationElement.appendChild(messageElement);
+});
+
+             // Reference to the call button
+      const callButton = document.getElementById("call-button");
+      // Handle call button click
+      callButton.addEventListener("click", (event) => {
+        // Check if the user's browser supports WebRTC
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          alert("Your browser does not support WebRTC");
+          return;
+        }
+
+        // Request audio and video from the user's device
+        navigator.mediaDevices
+          .getUserMedia({ audio: true, video: true })
+          .then((stream) => {
+            // Show the video stream in a video element
+            const video = document.createElement("video");
+            video.srcObject = stream;
+            document.body.appendChild(video);
+            video.play();
+          })
+          .catch((error) => {
+            // Handle the error
+            console.error(error);
+          });
+          });
+
+            $(document).ready(function () {
+              // Handle the 'Send' button click
+              $("#chat-form").submit(function (e) {
+                e.preventDefault();
+
+                // Get the message text
+                var message = $("#chat-message").val();
+
+                // Clear the message text
+                $("#chat-message").val("");
+
+                // Send the message to the server using ajax
+                $.ajax({
+                  url: "/send-message",
+                  type: "POST",
+                  data: {
+                    message: message,
+                  },
+                  success: function (data) {
+                    // Update the chat conversation with the new message
+                    var chat = $(".chat");
+                    chat.append(
+                      '<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff&text=DS" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small><strong class="pull-right primary-font">Doctor</strong></div><p>' +
+                        message +
+                        "</p></div></li>"
+                    );
+                  },
+                });
+              });
+
+              // Handle incoming messages from the server
+              var websocket = new WebSocket("ws://websocket-server-url");
+              websocket.onmessage = function (event) {
+                // Parse the incoming message
+                var data = JSON.parse(event.data);
+                var message = data.message;
+
+                // Update the chat conversation with the incoming message
+                var chat = $(".chat");
+                chat.append(
+                  '<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&text=JD" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">John Doe</strong><small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>12 mins ago</small></div><p>' +
+                    message +
+                    "</p></div></li>"
+                );
+              };
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

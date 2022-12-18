@@ -129,73 +129,82 @@
         <h2 class="section-title">Work</h2>
         <div class="project-container">
           <div class="project-card">
-            <img
-              class="project-image"
-              src="src/images/project1.jpg"
-              alt="Project One Image"
-            />
+            <a href="assets/other/weather.html">
+              <img
+                class="project-image"
+                src="assets/other/weather.png"
+                alt="Project One Image"
+            /></a>
             <h3>Project One</h3>
             <p class="subtext">
-              This is my project and some text about it. I enjoyed making this
-              project.
+              Weather app using 3rd party api to give the weather in any given
+              area
             </p>
             <hr />
             <p class="subtext">
-              <a class="project-link" href="https://www.github.com/kubowania"
+              <a
+                class="project-link"
+                href="https://github.com/HojoJohn/weather-app"
                 >View here</a
               >
             </p>
           </div>
           <div class="project-card">
-            <img
-              class="project-image"
-              src="src/images/project2.jpg"
-              alt="Project One Image"
-            />
+            <a href="assets/other/doodle.html">
+              <img
+                class="project-image"
+                src="assets/other/doodle.jpg"
+                alt="Project two Image"
+            /></a>
             <h3>Project Two</h3>
             <p class="subtext">
-              This is my project and some text about it. I enjoyed making this
-              project.
+              This is my project using javascript to showcase my proficiency
+              with it.
             </p>
             <hr />
             <p class="subtext">
-              <a class="project-link" href="https://www.github.com/kubowania"
+              <a
+                class="project-link"
+                href="https://github.com/HojoJohn/Doodle-Jump-Project"
                 >View here</a
               >
             </p>
           </div>
           <div class="project-card">
-            <img
-              class="project-image"
-              src="src/images/project3.png"
-              alt="Project One Image"
-            />
+            <a href="assets/other/index2.html">
+              <img
+                class="project-image"
+                src="assets/img/doctor-gc61c4e12e_640.png"
+                alt="Project three Image"
+            /></a>
             <h3>Project Three</h3>
             <p class="subtext">
-              This is my project and some text about it. I enjoyed making this
-              project.
+              Doctor contact portal that allows for types of cummination between
+              patient and doctor
             </p>
             <hr />
             <p class="subtext">
-              <a class="project-link" href="https://www.github.com/kubowania"
+              <a
+                class="project-link"
+                href="https://github.com/HojoJohn/Doctor-Contact-Portal/blob/main/index2.html"
                 >View here</a
               >
             </p>
           </div>
           <div class="project-card">
-            <img
-              class="project-image"
-              src="src/images/Project4.jpg"
-              alt="Project One Image"
-            />
+            <a href="assets/comic_flexgrid/index.html">
+              <img
+                class="project-image"
+                src="assets/img/intro_FD - Copy.jpg"
+                alt="Project four Image"
+            /></a>
             <h3>Project Four</h3>
-            <p class="subtext">
-              This is my project and some text about it. I enjoyed making this
-              project.
-            </p>
+            <p class="subtext">Project on the use of flexgrid</p>
             <hr />
             <p class="subtext">
-              <a class="project-link" href="https://www.github.com/kubowania"
+              <a
+                class="project-link"
+                href="https://github.com/HojoJohn/comic_flexgrid_website"
                 >View here</a
               >
             </p>
@@ -208,17 +217,34 @@
         <h2 class="section-title">Contact</h2>
 
         <div class="contact__container bd-grid">
-          <form action="" class="contact__form">
-            <input type="text" placeholder="Name" class="contact__input" />
-            <input type="mail" placeholder="Email" class="contact__input" />
+          <form
+            action="https://formsubmit.co/jonluislopez@gmail.com"
+            class="contact__form"
+            method="POST"
+          >
+            <input
+              name="name"
+              type="text"
+              placeholder="Name"
+              class="contact__input"
+            />
+            <input
+              name="email"
+              type="email"
+              placeholder="Email"
+              class="contact__input"
+            />
             <textarea
-              name=""
+              placeholder="Your Message"
+              name="message"
               id=""
               cols="0"
               rows="10"
               class="contact__input"
             ></textarea>
-            <input type="button" value="Send" class="contact__button button" />
+            <button type="submit" class="button-9" role="button">
+              Submit Form
+            </button>
           </form>
         </div>
       </section>
